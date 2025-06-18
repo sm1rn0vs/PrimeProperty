@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeProperty - Риэлторские услуги в Санкт-Петербурге</title>
+    <meta name="description" content="Профессиональные риэлторские услуги в Санкт-Петербурге. Продажа, покупка и аренда недвижимости. Работаем с 2005 года.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://example.com/spb-real-estate.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 32px;
+            color: #2c3e50;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-info {
+            padding: 25px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .service-price {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .stats {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 18px;
+        }
+        
+        .properties {
+            background-color: #f1f5f9;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .property-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .property-img {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .property-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .property-info {
+            padding: 20px;
+        }
+        
+        .property-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .property-location {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #e74c3c;
+        }
+        
+        .feature span {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .property-price {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .team {
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin: 0 auto 20px;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #e74c3c;
+        }
+        
+        .team-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .team-position {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .team-social a {
+            color: #2c3e50;
+            transition: color 0.3s;
+        }
+        
+        .team-social a:hover {
+            color: #e74c3c;
+        }
+        
+        .testimonials {
+            background-color: #f1f5f9;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 0 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero {
+                height: 500px;
+                padding-top: 120px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Prime<span>Property</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#properties">Объекты</a></li>
+                        <li><a href="#team">Команда</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Профессиональные риэлторские услуги в Санкт-Петербурге</h1>
+            <p>Продажа, покупка и аренда недвижимости. Работаем на рынке с 2005 года.</p>
+            <div>
+                <a href="#contacts" class="btn">Оставить заявку</a>
+                <a href="#properties" class="btn btn-outline">Посмотреть объекты</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://example.com/service1.jpg');"></div>
+                    <div class="service-info">
+                        <h3 class="service-title">Продажа недвижимости</h3>
+                        <span class="service-price">от 1% от стоимости</span>
+                        <p>Поможем быстро и выгодно продать вашу квартиру, дом или коммерческую недвижимость в Санкт-Петербурге.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://example.com/service2.jpg');"></div>
+                    <div class="service-info">
+                        <h3 class="service-title">Покупка недвижимости</h3>
+                        <span class="service-price">от 50 000 руб.</span>
+                        <p>Подберем оптимальный вариант по вашим критериям, проведем переговоры и оформим сделку.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://example.com/service3.jpg');"></div>
+                    <div class="service-info">
+                        <h3 class="service-title">Аренда недвижимости</h3>
+                        <span class="service-price">от 30 000 руб.</span>
+                        <p>Поможем сдать или арендовать жилье на выгодных условиях с полным юридическим сопровождением.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">18+</div>
+                    <div class="stat-text">Лет на рынке</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">1250+</div>
+                    <div class="stat-text">Успешных сделок</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-text">Довольных клиентов</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-text">Поддержка клиентов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="properties" class="section properties">
+        <div class="container">
+            <h2 class="section-title">Популярные объекты</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://example.com/property1.jpg');">
+                        <span class="property-tag">Продажа</span>
+                    </div>
+                    <div class="property-info">
+                        <h3 class="property-title">3-комн. квартира</h3>
+                        <span class="property-location">Василеостровский район, ул. Наличная, 40</span>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i>🛏️</i>
+                                <span>3 комнаты</span>
+                            </div>
+                            <div class="feature">
+                                <i>📏</i>
+                                <span>78 м²</span>
+                            </div>
+                            <div class="feature">
+                                <i>🏢</i>
+                                <span>5/9 этаж</span>
+                            </div>
+                        </div>
+                        <span class="property-price">12 500 000 руб.</span>
+                        <a href="#contacts" class="btn" style="padding: 8px 20px; font-size: 14px; display: block; text-align: center;">Записаться на просмотр</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://example.com/property2.jpg');">
+                        <span class="property-tag">Аренда</span>
+                    </div>
+                    <div class="property-info">
+                        <h3 class="property-title">2-комн. квартира</h3>
+                        <span class="property-location">Центральный район, ул. Марата, 15</span>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i>🛏️</i>
+                                <span>2 комнаты</span>
+                            </div>
+                            <div class="feature">
+                                <i>📏</i>
+                                <span>54 м²</span>
+                            </div>
+                            <div class="feature">
+                                <i>🏢</i>
+                                <span>3/5 этаж</span>
+                            </div>
+                        </div>
+                        <span class="property-price">65 000 руб./мес</span>
+                        <a href="#contacts" class="btn" style="padding: 8px 20px; font-size: 14px; display: block; text-align: center;">Записаться на просмотр</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://example.com/property3.jpg');">
+                        <span class="property-tag">Продажа</span>
+                    </div>
+                    <div class="property-info">
+                        <h3 class="property-title">Квартира-студия</h3>
+                        <span class="property-location">Приморский район, ул. Савушкина, 83</span>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i>🛏️</i>
+                                <span>1 комната</span>
+                            </div>
+                            <div class="feature">
+                                <i>📏</i>
+                                <span>32 м²</span>
+                            </div>
+                            <div class="feature">
+                                <i>🏢</i>
+                                <span>12/25 этаж</span>
+                            </div>
+                        </div>
+                        <span class="property-price">6 800 000 руб.</span>
+                        <a href="#contacts" class="btn" style="padding: 8px 20px; font-size: 14px; display: block; text-align: center;">Записаться на просмотр</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="team" class="section team">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://example.com/agent1.jpg');"></div>
+                    <h3 class="team-name">Михаил Смирнов</h3>
+                    <div class="team-position">Руководитель агентства</div>
+                    <p>Опыт работы 15 лет. Специализация - элитная недвижимость.</p>
+                    <div class="team-social">
+                        <a href="#">📱</a>
+                        <a href="#">✉️</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://example.com/agent2.jpg');"></div>
+                    <h3 class="team-name">Дмитрий Иванов</h3>
+                    <div class="team-position">Старший риэлтор</div>
+                    <p>Опыт работы 10 лет. Специализация - новостройки.</p>
+                    <div class="team-social">
+                        <a href="#">📱</a>
+                        <a href="#">✉️</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://example.com/agent3.jpg');"></div>
+                    <h3 class="team-name">Елена Петрова</h3>
+                    <div class="team-position">Риэлтор</div>
+                    <p>Опыт работы 7 лет. Специализация - аренда жилья.</p>
+                    <div class="team-social">
+                        <a href="#">📱</a>
+                        <a href="#">✉️</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://example.com/agent4.jpg');"></div>
+                    <h3 class="team-name">Михаил Соколов</h3>
+                    <div class="team-position">Юрист</div>
+                    <p>Опыт работы 12 лет. Юридическое сопровождение сделок.</p>
+                    <div class="team-social">
+                        <a href="#">📱</a>
+                        <a href="#">✉️</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Благодарю команду PrimeProperty за профессиональный подход к продаже моей квартиры. Нашли покупателя за 2 недели по цене выше рыночной. Все документы оформили быстро и без проблем."</p>
+                    <div class="testimonial-author">— Ольга К., продажа 3-комн. квартиры</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contacts" class="section">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Интересующая услуга</label>
+                        <select id="service">
+                            <option value="sale">Продажа недвижимости</option>
+                            <option value="buy">Покупка недвижимости</option>
+                            <option value="rent">Аренда недвижимости</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" placeholder="Опишите вашу ситуацию и пожелания"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>PrimeProperty - профессиональное риэлторское агентство в Санкт-Петербурге. Работаем с 2005 года.</p>
+                    <p>Лицензия № 395871308 от 01.01.2010</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Санкт-Петербург, Невский пр., 100</li>
+                        <li>Телефон: +7 (967) 564-30-27</li>
+                        <li>Email: mchlsmirnoff@gmail.com</li>
+                        <li>Режим работы: круглосуточно</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Услуги</h3>
+                    <ul>
+                        <li><a href="#">Продажа недвижимости</a></li>
+                        <li><a href="#">Покупка недвижимости</a></li>
+                        <li><a href="#">Аренда жилья</a></li>
+                        <li><a href="#">Юридические услуги</a></li>
+                        <li><a href="#">Оценка недвижимости</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Районы работы</h3>
+                    <ul>
+                        <li>Центральный район</li>
+                        <li>Василеостровский район</li>
+                        <li>Петроградский район</li>
+                        <li>Приморский район</li>
+                        <li>Все районы СПб</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 PrimeProperty. Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
